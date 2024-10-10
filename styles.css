@@ -1,0 +1,213 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+  font-family: 'Arial', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Quote Wall */
+.quote-wall {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.floating-quote {
+  position: absolute;
+  font-size: 2rem; /* Increased the size of the quotes */
+  font-family: 'Dancing Script', cursive; /* A more elegant cursive font */
+  font-style: italic;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  opacity: 0;
+  animation: floatQuote 12s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes floatQuote {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+/* Positioning floating quotes */
+.floating-quote:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+.floating-quote:nth-child(2) { top: 15%; left: 65%; animation-delay: 2s; }
+.floating-quote:nth-child(3) { top: 40%; left: 30%; animation-delay: 4s; }
+.floating-quote:nth-child(4) { top: 65%; left: 50%; animation-delay: 6s; }
+.floating-quote:nth-child(5) { top: 85%; left: 20%; animation-delay: 8s; }
+.floating-quote:nth-child(6) { top: 75%; left: 75%; animation-delay: 10s; }
+
+/* Responsive quote sizes */
+@media (max-width: 768px) {
+  .floating-quote {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-quote {
+    font-size: 1.2rem;
+  }
+}
+
+/* Container */
+.container {
+  text-align: center;
+  z-index: 2; /* Brings main content to the front */
+}
+
+.birthday-text {
+  font-size: 4rem; /* Larger size for main message */
+  font-weight: 600; /* Fine font weight for better styling */
+  font-family: 'Playfair Display', serif; /* Elegant font with fine detailing */
+  color: white;
+  margin-bottom: 2rem;
+  animation: colorChange 2s infinite alternate;
+}
+
+@keyframes colorChange {
+  0% { color: #f7a6a6; }
+  100% { color: #fff176; }
+}
+
+/* Balloons */
+.balloons {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.balloon {
+  width: 60px;
+  height: 80px;
+  border-radius: 50%;
+  position: relative;
+  background-color: #ff6f61;
+  animation: float 3s ease-in-out infinite;
+}
+
+.balloon::before {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 50px;
+  background-color: black;
+}
+
+.balloon1 { background-color: #ff6f61; animation-delay: 0s; }
+.balloon2 { background-color: #ffd700; animation-delay: 1s; }
+.balloon3 { background-color: #66cdaa; animation-delay: 2s; }
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-30px); }
+  100% { transform: translateY(0); }
+}
+
+/* Cake with Candle */
+.cake {
+  margin-top: 50px;
+  position: relative;
+}
+
+.candle {
+  width: 20px;
+  height: 80px;
+  background-color: yellow;
+  margin: 0 auto;
+  border-radius: 5px;
+  position: relative;
+  box-shadow: 0px -5px 15px rgba(255, 255, 0, 0.8);
+}
+
+.candle::before {
+  content: '';
+  width: 8px;
+  height: 20px;
+  background-color: orange;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  animation: flicker 0.1s infinite;
+}
+
+@keyframes flicker {
+  0% { transform: translateX(-50%) scale(1); opacity: 1; }
+  50% { transform: translateX(-48%) scale(1.2); opacity: 0.9; }
+  100% { transform: translateX(-50%) scale(1); opacity: 1; }
+}
+
+/* Confetti Styling */
+.confetti-container {
+  position: fixed; /* Fixed so it stays in place even when scrolling */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2; /* Behind main content but above quotes */
+  overflow: hidden;
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  opacity: 0.7;
+  animation: fall linear infinite;
+}
+
+/* Different confetti colors */
+.confetti:nth-child(odd) {
+  background-color: #66cdaa;
+}
+.confetti:nth-child(even) {
+  background-color: #ffd700;
+}
+
+/* Confetti falling animation */
+@keyframes fall {
+  0% {
+    transform: translateY(-100px) rotate(0deg); /* Start above viewport */
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg); /* Rotate as it falls */
+    opacity: 0;
+  }
+}
